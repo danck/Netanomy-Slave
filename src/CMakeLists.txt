@@ -1,4 +1,4 @@
-include_directories(cstates)
+include_directories(cstates "${PROJECT_SOURCE_DIR}/libs/cppzmq")
 add_executable(netanomy main.cpp)
 
 SET(ZMQ_INCLUDE ${ZMQ_INCLUDE} CACHE STRING "Location of ZeroMQ headers.")

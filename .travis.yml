@@ -11,21 +11,28 @@ compiler:
 
 before_script:
   - PROJECT_ROOT=`pwd`
-  - PATH=$PATH:/home/travis/build/DanoPrat/Netanomy/lib
+  - PATH=$PATH:/home/travis/build/DanoPrat/Netanomy-Slave/lib
   - LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PROJECT_ROOT
-  - mkdir lib
-  - cd lib
+
+# Download and build ZeroMQ
+  - mkdir -p libs/zeromq
+  - cd libs
   - wget http://download.zeromq.org/zeromq-4.0.1.tar.gz
   - tar xzf zeromq-4.0.1.tar.gz
   - cd zeromq-4.0.1
-  - ./configure --prefix=$PROJECT_ROOT/lib
+  - ./configure --prefix=$PROJECT_ROOT/libs/zeromq
   - make
   - make install
   - sudo ldconfig -v | grep -i libzmq
   - cd ..
+
+# Download C++ binding header fuer ZeroMQ
+  - git clone https://github.com/zeromq/cppzmq.git
   - cd ..
+
+# create makefile
   - mkdir build
   - cd build
-  - cmake -DZMQ_INCLUDE=$PROJECT_ROOT/lib/include -DZMQ_LIBRARY=$PROJECT_ROOT/lib/lib/libzmq.so ..
+  - cmake -DZMQ_INCLUDE=$PROJECT_ROOT/libs/zeromq/include -DZMQ_LIBRARY=$PROJECT_ROOT/libs/zeromq/lib/libzmq.so -DZMQ_BINDING=$PROJECT_ROOT/libs/cppzmq ..
 
 script: make
