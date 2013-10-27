@@ -1,0 +1,31 @@
+language: cpp
+
+compiler:
+  - clang
+#  - gcc
+
+# blacklisted branches
+#branches:
+#  except:
+#    - test
+
+before_script:
+  - PROJECT_ROOT=`pwd`
+  - PATH=$PATH:/home/travis/build/DanoPrat/Netanomy/lib
+  - LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PROJECT_ROOT
+  - mkdir lib
+  - cd lib
+  - wget http://download.zeromq.org/zeromq-4.0.1.tar.gz
+  - tar xzf zeromq-4.0.1.tar.gz
+  - cd zeromq-4.0.1
+  - ./configure --prefix=$PROJECT_ROOT/lib
+  - make
+  - make install
+  - sudo ldconfig -v | grep -i libzmq
+  - cd ..
+  - cd ..
+  - mkdir build
+  - cd build
+  - cmake -DZMQ_INCLUDE=$PROJECT_ROOT/lib/include -DZMQ_LIBRARY=$PROJECT_ROOT/lib/lib/libzmq.so ..
+
+script: make
