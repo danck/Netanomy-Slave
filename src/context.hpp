@@ -4,10 +4,17 @@
 #include "zmq.hpp"
 
 /**
-@brief Provides context operations and data for cstates
+@brief Provides context operations and data for the states
 */
-class SLContext {
+namespace nty
+{
 
-};
+	class Context 
+	{
+		Context();
+		~Context();
+	};
+
+}
 
 #endif

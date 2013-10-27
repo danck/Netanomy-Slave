@@ -2,9 +2,10 @@
 #define __STATE_T__
 
 /** 
-@brief	Enumeration of possible machine states
+@brief	Enumeration type of possible machine states
 */
-enum state_t {
+enum state_t 
+{
 	INIT_STATE, 
 	SUBS_STATE, 
 	WAIT_ORDERS_STATE,

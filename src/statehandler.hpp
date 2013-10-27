@@ -1,13 +1,19 @@
-#ifndef __STATEHANDLER__
-#define __STATEHANDLER__
+#ifndef __STATE_HANDLER__
+#define __STATE_HANDLER__
 
 /**
 @brief handles state switches and context operations
-
-Hallo cih bin eine lange Beschreibung
 */
-class StateHandler {
+namespace nty
+{
+	class StateHandler 
+	{
+	public:
 
-};
+		StateHandler ();
+		~StateHandler ();
+
+	};
+}
 
 #endif

@@ -7,8 +7,8 @@
 
 #include <iostream>
 
-int main (int argc, char ** argv) {
-	// daemonize??
+int main (int argc, char ** argv) 
+{
 	// initialize state machine
 	// start execution by entering init_state
 	// clean exit
