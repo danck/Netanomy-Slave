@@ -1,8 +1,0 @@
-#include "state.hpp"
-
-using namespace nty;
-
-State::State(std::shared_ptr<Context> context) nothrow;
-
-State::~State()
-{}
