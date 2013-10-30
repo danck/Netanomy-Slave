@@ -1,0 +1,7 @@
+#ifndef __REQUEST__
+#define __REQUEST__
+
+class Request
+{};
+
+#endif

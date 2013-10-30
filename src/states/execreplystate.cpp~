@@ -1,0 +1,11 @@
+#include "execreplystate.hpp"
+
+using namespace nty;
+
+ExecReplyState::ExecReplyState(const std::shared_ptr<Context> &context) nothrow
+: State(context)
+{}
+
+ExecReplyState::~ExecReplyState() nothrow
+{}
+    

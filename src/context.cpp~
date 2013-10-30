@@ -1,0 +1,11 @@
+#include "context.hpp"
+
+Context::Context();
+
+Context::~Context();
+
+zmq::socket_t&
+Context::get_listen_socket() const noexcept
+{
+  return _listen_socket;
+}

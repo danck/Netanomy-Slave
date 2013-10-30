@@ -1,0 +1,9 @@
+#ifndef __PLUGIN__
+#define __PLUGIN__
+
+#include <memory>
+
+namespace nty
+
+
+#endif

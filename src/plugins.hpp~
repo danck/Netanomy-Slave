@@ -1,0 +1,10 @@
+#ifndef __PLUGINS__
+#define __PLUGINS__
+
+namespace nty
+{
+  
+
+}
+
+#endif

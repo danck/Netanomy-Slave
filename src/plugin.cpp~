@@ -1,0 +1,17 @@
+#include "plugin.hpp"
+
+using namespace nty;
+
+Plugin::Plugin(const plugin_id id)
+  : _id(id)
+{}
+
+Plugin::~Plugin() noexcept
+{}
+
+
+Plugin::plugin_id
+Plugin::get_plugin_id()
+{
+  return _id;
+}

@@ -1,0 +1,27 @@
+#ifndef __STATE__
+#define __STATE__
+
+#include <memory>
+
+// Interface class for slave states
+
+namespace nty
+{
+  class Context;
+  
+  class State 
+  {
+  public:
+    State(std::shared_ptr<Context> context) nothrow;
+    
+    virtual ~State();
+    
+    virtual std::unique_ptr<State>
+    run() = 0;
+    
+  private:
+    std::shared_ptr<Context> _context;
+  };
+}
+
+#endif
