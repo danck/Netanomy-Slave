@@ -9,24 +9,30 @@
 */
 namespace nty
 {
-  class Context 
-  {
-  public:
-    Context();
-    
-    ~Context();
-    
-    zmq::socket_t&
-    get_listen_socket() const noexcept;
-    
-    const Plugins&
-    get_plugins() const noexcept;
+    class Context 
+    {
+    public:
+        Context();
 
-  private:
-    zmq::context_t _zmq_context;
-    mutable zmq::socket_t _listen_socket;
-    const Plugins _plugins;
-  };
+        ~Context() noexcept;
+
+        zmq::socket_t&
+        get_subscriber() const noexcept;
+
+        const Plugins&
+        get_plugins() const noexcept;
+
+        void
+        send(std::string s);
+
+        std::string
+        receive();
+
+    private:
+        zmq::context_t _zmq_context;
+        mutable zmq::socket_t _subscriber;
+        const Plugins _plugins;
+    };
 }
 
 #endif

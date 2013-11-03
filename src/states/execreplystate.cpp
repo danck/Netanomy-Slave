@@ -2,6 +2,7 @@
 #include "waitordersstate.hpp"
 #include <context.hpp>
 #include <request.hpp>
+#include <iostream>
 
 using namespace nty;
 
@@ -16,9 +17,10 @@ ExecReplyState::~ExecReplyState() noexcept
 std::unique_ptr<State>
 ExecReplyState::run()
 {
-  this->get_context()->get_plugins().lookup(_request->get_plugin_id())
+	std::cout << "exec reply state" << std::endl;
+	this->get_context()->get_plugins().lookup(_request->get_plugin_id())
     ->instantiate_executor(this->get_context(), _request)->run
     (this->get_context(), _request);
-  
-  return std::unique_ptr<State>(new WaitOrdersState(this->get_context()));
+
+	return std::unique_ptr<State>(new WaitOrdersState(this->get_context()));
 }

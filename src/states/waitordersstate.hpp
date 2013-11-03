@@ -10,14 +10,14 @@ namespace nty
 {
   class WaitOrdersState : public State
   {
-  public:
-    WaitOrdersState(const std::shared_ptr<Context> &context) noexcept;
-    
-    virtual ~WaitOrdersState() noexcept;
-    
-    virtual std::unique_ptr<State>
-    run();
-  };
+	public:
+		WaitOrdersState(const std::shared_ptr<Context> &context) noexcept;
+
+		virtual ~WaitOrdersState() noexcept;
+
+		virtual std::unique_ptr<State>
+		run();
+	};
 }
 
 #endif

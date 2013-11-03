@@ -1,9 +1,6 @@
-# using c++0x instead of c++11 for older versions of clang
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 add_definitions(-DNTY_PLUGINS_DIR="/usr/lib/nty-slave")
-add_executable(netanomy-slave main.cpp plugin.cpp plugin.hpp null_plugin.cpp null_plugin.hpp
-plugins.cpp plugins.hpp
-statehandler.hpp statehandler.cpp context.cpp context.hpp request.cpp request.hpp
+add_executable(netanomy-slave main.cpp plugin.cpp plugin.hpp null_plugin.cpp null_plugin.hpp plugins.cpp plugins.hpp statehandler.hpp statehandler.cpp context.cpp context.hpp request.cpp request.hpp zhelpers.hpp
 ${CMAKE_CURRENT_SOURCE_DIR}/states/execreplystate.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/states/execreplystate.hpp
 ${CMAKE_CURRENT_SOURCE_DIR}/states/state.cpp
