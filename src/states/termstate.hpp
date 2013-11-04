@@ -9,7 +9,7 @@ namespace nty
 	{
 	public:
 		TermState(nty::Context c);
-		~TermState();
+		~TermState() noexecpt;
 	};
 }
 

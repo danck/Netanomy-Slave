@@ -1,5 +1,9 @@
+#include <iostream>
+#include <thread>
+#include <unistd.h>
 #include "null_plugin.hpp"
 #include "plugin.hpp"
+#include "request.hpp"
 
 using namespace nty;
 
@@ -22,9 +26,10 @@ private:
 class NullExecutor : public RequestExecutor
 {
 public:
+    // NullExecutor();
     ~NullExecutor() noexcept;
 
-    std::vector<char>
+    RequestExecutor::reply_type
     run(const std::shared_ptr<Context> &context,
         const std::unique_ptr<Request> &request);
 };
@@ -47,12 +52,17 @@ NullPlugin::instantiate_executor(const std::shared_ptr<Context> &context,
 NullExecutor::~NullExecutor() noexcept
 {}
 
-
+/*
+@brief  Echoes received data
+*/
 RequestExecutor::reply_type
 NullExecutor::run(const std::shared_ptr<Context> &context,
 	const std::unique_ptr<Request> &request)
 {
-    return reply_type();
+    std::cout << "Yes, this is NullPlugin." << std::endl;
+    sleep(2);
+    RequestExecutor::reply_type rp = request->get_request_data();
+    return rp;
 }
 
 std::unique_ptr<Plugin>

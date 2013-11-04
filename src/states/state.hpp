@@ -15,6 +15,9 @@ namespace nty
 
         virtual ~State() noexcept = 0;
 
+        /*
+        @brief  Execute state routine
+        */
         virtual std::unique_ptr<State>
         run() = 0;
 

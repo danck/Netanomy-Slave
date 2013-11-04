@@ -2,6 +2,7 @@
 #define __EXEC_REPLY_STATE__
 
 #include "state.hpp"
+#include "plugin.hpp"
 
 // Executes plugin, waits for results and submits them to the master
 namespace nty
@@ -18,6 +19,9 @@ namespace nty
 
         virtual std::unique_ptr<State>
         run();
+
+    
+        void send_result(const RequestExecutor::reply_type result);
 
     private:
         std::unique_ptr<Request> _request;

@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <vector>
+#include <string>
 
 namespace nty
 {
@@ -15,7 +16,7 @@ namespace nty
     public:
     virtual ~RequestExecutor() noexcept = 0;
 
-    typedef std::vector<char> reply_type;
+    typedef std::string reply_type;
 
     virtual reply_type
     run(const std::shared_ptr<Context> &context,

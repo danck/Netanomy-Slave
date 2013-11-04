@@ -28,6 +28,9 @@ namespace nty
         std::string
         receive();
 
+        zmq::context_t&
+        get_zmq_context() noexcept;
+
     private:
         zmq::context_t _zmq_context;
         mutable zmq::socket_t _subscriber;

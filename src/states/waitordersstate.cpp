@@ -1,11 +1,13 @@
-#include "waitordersstate.hpp"
-#include "execreplystate.hpp"
 #include <context.hpp>
 #include <request.hpp>
 #include <zmq.hpp>
-#include <string.h>
+#include <string>
 #include <iostream>
+#include <cassert>
+#include "waitordersstate.hpp"
+#include "execreplystate.hpp"
 #include "zhelpers.hpp"
+#include "plugins.hpp"
 
 using namespace nty;
  
@@ -19,19 +21,42 @@ WaitOrdersState::~WaitOrdersState() noexcept
 std::unique_ptr<State>
 WaitOrdersState::run()
 {
+    std::cout << "## Switched to WaitOrdersState ##" << std::endl << std::endl;
+
+    zmq::socket_t& subscriber = get_context()->get_subscriber();
+    
     while (true)
-    {
+    {        
+        // Consume envelope with address
+        std::string address     = zhelpers::s_recv (subscriber);
+        // assert(address.compare(get_context()->filter))
 
-        zmq::socket_t& subscriber = get_context()->get_subscriber();
-        
-        // Read envelope with address
-        std::string address = zhelpers::s_recv (subscriber);
-            
-        // Read message contents
-        std::string contents = zhelpers::s_recv (subscriber);
+        // Receive and store message contents
+        std::string contents    = zhelpers::s_recv (subscriber);
 
-        std::cout << "[" << address << "] " << contents << std::endl;
+        // dissamble message
+        unsigned first_delim            = contents.find(" ");
+        Plugin::plugin_id_type pl_id    = std::stoi(contents.substr(0, first_delim));
+        Request::request_data_type data = contents.substr(first_delim + 1);
+
+        // this should be replaced by a proper logger
+        std::cout << "Received:" << std::endl 
+            << "Address: "<<" [" << address << "] " << std::endl
+            << "Plugin ID: " << " [" << std::to_string(pl_id) << "] " << std::endl
+            << "Data: " << " [" << data  << "] " <<  std::endl << std::endl;
+
+        // check for plugin_id????
+
+        // Assemble 'Request' from received content
+        std::unique_ptr<Request> request(
+            new Request(pl_id, std::move(data)));
+
+        // Construct and return next state
+        return std::unique_ptr<State>(
+            new ExecReplyState(this->get_context(), std::move(request)));
     }
+
+}
 
 
     // zmq::message_t msg;
@@ -49,12 +74,10 @@ WaitOrdersState::run()
     // free(my_msg);
 
     // // std::vector<char> request_data(static_cast<char*>(msg.data()) + sizeof(Plugin::plugin_id_type),
-    // 	// 		 static_cast<char*>(msg.data()) + msg.size());
+    //  //       static_cast<char*>(msg.data()) + msg.size());
 
     // // std::unique_ptr<Request> request(new Request(plugin_id, std::move(request_data)));
 
     // std::cin.ignore();
 
     // return std::unique_ptr<State>(new ExecReplyState(this->get_context(), std::move(request)));
-    return NULL;
-}
