@@ -27,8 +27,7 @@ namespace nty
 
         /*
         @brief  Maintain execution of state routines, starting with WaitOrdersState
-        Runs the initial state (WaitOrdersState) and provide it
-        with the the given context. 
+        Runs the initial state (WaitOrdersState) and provide it with the the given context. 
         This method then takes the return value as the next state to run and
         thus maintains an execution cycle of state routines until a termination value
         is returned

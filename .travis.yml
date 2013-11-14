@@ -1,7 +1,7 @@
 language: cpp
 
 compiler:
-  - clang
+  # - clang
   - gcc
 
 # blacklisted branches
@@ -13,6 +13,19 @@ before_script:
   - PROJECT_ROOT=`pwd`
   - PATH=$PATH:/home/travis/build/DanoPrat/Netanomy-Slave/lib
   - LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PROJECT_ROOT
+
+# GCC specific
+  - if [ $CXX == "g++" ]; then $PROJECT_ROOT/travis_gcc.sh; fi
+  - if [ $CXX == "g++" ]; then export CC=/usr/bin/gcc-4.7; fi
+  - if [ $CXX == "g++" ]; then export CXX=/usr/bin/g++-4.7; fi
+
+# Clang specific
+  - if [ $CXX == "clang++" ]; then sudo apt-get --force-yes purge clang; fi
+  - if [ $CXX == "clang++" ]; then sudo add-apt-repository 'deb http://llvm.org/apt/precise/ llvm-toolchain-precise main'; fi
+  - if [ $CXX == "clang++" ]; then sudo wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -; fi
+  - if [ $CXX == "clang++" ]; then $PROJECT_ROOT/travis_clang.sh; fi
+  - find /usr -name clang++
+  - clang -v
 
 # # Download and build ZeroMQ
 #   - mkdir -p libs/zeromq
