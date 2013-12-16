@@ -9,7 +9,7 @@ Context::Context()
 {
     // Set filter according to this particular host
     std::string filter = "Linux";
-    _subscriber.setsockopt( ZMQ_SUBSCRIBE, filter.data(), strlen(filter.data()));
+    _subscriber.setsockopt(ZMQ_SUBSCRIBE, filter.data(), strlen(filter.data()));
 
     _subscriber.connect("tcp://localhost:11000");
 }

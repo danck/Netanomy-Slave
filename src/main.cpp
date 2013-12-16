@@ -1,5 +1,12 @@
-// Slave's main function
-// start and end point of execution
+/** @mainpage Netanomy: Slave Component
+*   @author Daniel Kirchner <daniel.kirchner1@haw-hamburg.de>
+*   @author Yavuz Arslan <yavuz.arslan@haw-hamburg.de>
+*   @version 0.0.1
+*   @par Description:
+*   - Runs on remote hosts
+*   - Execute test plugin
+*/
+
 #include "context.hpp"
 #include "statehandler.hpp"
 #include <memory>
@@ -7,6 +14,9 @@
 
 using namespace nty;
 
+/**
+   Starts the slave.
+ */
 int main (int argc, char ** argv) 
 {
 	// initialize state machine
