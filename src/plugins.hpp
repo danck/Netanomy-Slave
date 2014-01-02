@@ -42,6 +42,7 @@ either expressed or implied, of the FreeBSD Project.
 
 namespace nty
 {
+  
   class Plugins
   {
   public:
