@@ -40,7 +40,7 @@ either expressed or implied, of the FreeBSD Project.
 
 namespace nty
 {
-    /*
+    /**
     @brief  A package addressing a particular plugin and containing the data to deliver
     */
     class Request
@@ -51,9 +51,17 @@ namespace nty
         Request(const Plugin::plugin_id_type plugin_id,
             request_data_type &&request_data);
 
+	/**
+        @brief  Gets the id of a plugin.
+        @return the plugin id
+        */
         const Plugin::plugin_id_type
         get_plugin_id() const noexcept;
 
+	/**
+        @brief  Gets the data of a request
+        @return pointer to data of a request
+        */
         const request_data_type&
         get_request_data() const noexcept;
 

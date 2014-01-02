@@ -38,11 +38,11 @@ either expressed or implied, of the FreeBSD Project.
 #include <zmq.hpp>
 #include "plugins.hpp"
 
-/**
-@brief Provides context operations and data for the states
-*/
 namespace nty
 {
+    /**
+    @brief Provides context operations and data for the states
+    */
     class Context 
     {
     public:
@@ -50,18 +50,23 @@ namespace nty
 
         ~Context() noexcept;
 
+        /**
+        @brief  Gets the reciever for master broadcasts.
+        @return the socket on which the server publishes messages
+        */
         zmq::socket_t&
         get_subscriber() const noexcept;
 
+	/**
+        @TODO ueberarbeiten
+        */
         const Plugins&
         get_plugins() const noexcept;
-
-        void
-        send(std::string s);
-
-        std::string
-        receive();
-
+	
+	/**
+        @brief Gets the zmq context.
+        @return zmq context
+        */
         zmq::context_t&
         get_zmq_context() noexcept;
 

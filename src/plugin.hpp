@@ -1,4 +1,4 @@
-/* ========================================================
+make/* ========================================================
 Homework for SE2 practical course, HAW Hamburg
 
 Copyright (c) 2013, Yavuz Arslan, Daniel Kirchner
