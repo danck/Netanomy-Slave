@@ -41,7 +41,7 @@ WaitOrdersState::run()
 
         // this should be replaced by a proper logger
         std::cout << "Received:" << std::endl 
-            << "Address: "<<" [" << address << "] " << std::endl
+            << "Address: " << " [" << address << "] " << std::endl
             << "Plugin ID: " << " [" << std::to_string(pl_id) << "] " << std::endl
             << "Data: " << " [" << data  << "] " <<  std::endl << std::endl;
 
